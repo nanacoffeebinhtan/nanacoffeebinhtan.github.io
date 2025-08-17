@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NaNa Coffee</title>
+  <meta name="description" content="NaNa Coffee - Menu & liên hệ. Số 1, Đường 57, Phường Tân Tạo, Quận Bình Tân. Mở cửa 19:00–22:00. Điện thoại 0934569393." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf7f2;             /* nền be nhẹ */
+      --card: #ffffff;            /* thẻ trắng */
+      --text: #1f2937;            /* xám đậm */
+      --muted: #64748b;           /* xám nhạt */
+      --brand: #7b4b33;           /* nâu cà phê */
+      --brand-2: #e7d6c8;         /* be */
+      --ring: rgba(123,75,51,.2);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: var(--text); background: var(--bg); }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(6px); background: rgba(255,255,255,.7); border-bottom: 1px solid #eee; }
+    .nav-inner { height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .brand .logo { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--brand), #a56f50); display:inline-block; position: relative; }
+    .brand .logo:after { content:""; position:absolute; inset:6px; border-radius:6px; background: radial-gradient(circle at 40% 35%, #fff6 0 40%, transparent 41% 100%);} 
+    .nav a:hover { opacity: .7; }
+    .nav-links { display: none; gap: 20px; font-size: 14px; }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+
+    /* HERO */
+    .hero { position: relative; height: 70vh; min-height: 420px; display: grid; place-items: center; color: white; overflow: hidden; }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(1.05); }
+    .hero:before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.25)); }
+    .hero .content { position: relative; text-align:center; padding: 0 16px; }
+    .hero h1 { font-size: clamp(32px, 5vw, 56px); margin: 0 0 10px; font-weight: 800; }
+    .hero p { opacity: .95; font-size: clamp(16px, 2.2vw, 20px); }
+
+    /* CARDS / MENU */
+    h2.section-title { font-size: clamp(24px, 3vw, 32px); margin: 0; }
+    .section { padding: 64px 0; }
+    .grid { display: grid; gap: 16px; }
+    @media (min-width: 640px){ .grid-sm-2 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (min-width: 1024px){ .grid-lg-3 { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+    .card { background: var(--card); border: 1px solid #eee; border-radius: 18px; padding: 18px; box-shadow: 0 6px 20px rgba(0,0,0,.04); }
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #eee; font-size: 14px; }
+    .item:last-child { border-bottom: 0; }
+    .price { font-weight: 600; }
+
+    /* INFO */
+    .info { display: grid; gap: 14px; margin-top: 18px; font-size: 14px; color: var(--muted); }
+
+    /* CTA buttons */
+    .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .btn { display: inline-flex; align-items:center; gap:10px; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--brand); background: var(--brand); color: #fff; font-weight: 600; box-shadow: 0 8px 18px var(--ring); transition: transform .08s ease, box-shadow .2s ease; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 22px var(--ring); }
+    .btn.outline { background: #fff; color: var(--brand); }
+
+    /* ABOUT */
+    .about { text-align: center; }
+    .about p { color: var(--muted); max-width: 780px; margin: 12px auto 0; }
+
+    /* FOOTER */
+    footer { background: #f5efe9; border-top: 1px solid #eaded3; padding: 36px 0; text-align: center; font-size: 13px; color: #6b7280; }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#hero" aria-label="NaNa Coffee">
+        <span class="logo" aria-hidden="true"></span>
+        <span>NaNa Coffee</span>
+      </a>
+      <div class="nav-links">
+        <a href="#menu">Menu</a>
+        <a href="#about">Giới thiệu</a>
+        <a href="#contact">Liên hệ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <img alt="Cà phê" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1600&auto=format&fit=crop"/>
+    <div class="content container">
+      <h1>Một tách ngon — một ngày vui</h1>
+      <p>Menu đa dạng · Không gian thoải mái · Giá hợp lý</p>
+      <div class="btns" style="justify-content:center">
+        <a class="btn" href="tel:0934569393">📞 Gọi ngay</a>
+        <a class="btn outline" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=NaNa+Coffee+S%C3%B4+1+%C4%90%C6%B0%E1%BB%9Dng+57+Ph%C6%B0%E1%BB%9Dng+T%C3%A2n+T%E1%BA%A1o+Qu%E1%BA%ADn+B%C3%ACnh+T%C3%A2n">🧭 Chỉ đường</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="section">
+    <div class="container">
+      <h2 class="section-title">Menu</h2>
+      <div class="grid grid-sm-2 grid-lg-3" style="margin-top:18px">
+        <!-- Coffee -->
+        <div class="card"><h3>Coffee</h3>
+          <div class="item"><span>Espresso</span><span class="price">20K</span></div>
+          <div class="item"><span>Espresso sữa</span><span class="price">22K</span></div>
+          <div class="item"><span>Coffee đen - đá/nóng</span><span class="price">18K</span></div>
+          <div class="item"><span>Coffee sữa - đá/nóng</span><span class="price">20K</span></div>
+          <div class="item"><span>Bạc xỉu</span><span class="price">20K</span></div>
+          <div class="item"><span>Cacao</span><span class="price">22K</span></div>
+          <div class="item"><span>Socola</span><span class="price">22K</span></div>
+        </div>
+        <!-- Nước ép -->
+        <div class="card"><h3>Nước ép</h3>
+          <div class="item"><span>Cam</span><span class="price">25K</span></div>
+          <div class="item"><span>Cà chua</span><span class="price">25K</span></div>
+          <div class="item"><span>Ổi</span><span class="price">25K</span></div>
+          <div class="item"><span>Thơm</span><span class="price">25K</span></div>
+          <div class="item"><span>Dưa hấu</span><span class="price">25K</span></div>
+          <div class="item"><span>Carot</span><span class="price">25K</span></div>
+          <div class="item"><span>Táo</span><span class="price">28K</span></div>
+          <div class="item"><span>Mix 2 loại</span><span class="price">28K</span></div>
+        </div>
+        <!-- Sinh tố -->
+        <div class="card"><h3>Sinh tố</h3>
+          <div class="item"><span>Mãng cầu</span><span class="price">28K</span></div>
+          <div class="item"><span>Bơ</span><span class="price">28K</span></div>
+          <div class="item"><span>Sapoche</span><span class="price">28K</span></div>
+          <div class="item"><span>Ổi hồng</span><span class="price">28K</span></div>
+          <div class="item"><span>Dừa</span><span class="price">28K</span></div>
+          <div class="item"><span>Cà chua</span><span class="price">28K</span></div>
+          <div class="item"><span>Thơm</span><span class="price">28K</span></div>
+          <div class="item"><span>Mix 2 loại</span><span class="price">30K</span></div>
+        </div>
+        <!-- Sữa chua -->
+        <div class="card"><h3>Sữa chua</h3>
+          <div class="item"><span>Chanh dây</span><span class="price">28K</span></div>
+          <div class="item"><span>Đào</span><span class="price">28K</span></div>
+          <div class="item"><span>Dâu</span><span class="price">28K</span></div>
+          <div class="item"><span>Việt quất</span><span class="price">28K</span></div>
+          <div class="item"><span>Dưa lưới</span><span class="price">28K</span></div>
+          <div class="item"><span>Ổi</span><span class="price">28K</span></div>
+        </div>
+        <!-- Soda -->
+        <div class="card"><h3>Soda</h3>
+          <div class="item"><span>Chanh dây</span><span class="price">25K</span></div>
+          <div class="item"><span>Đào</span><span class="price">25K</span></div>
+          <div class="item"><span>Dâu</span><span class="price">25K</span></div>
+          <div class="item"><span>Việt quất</span><span class="price">25K</span></div>
+          <div class="item"><span>Xoài</span><span class="price">25K</span></div>
+          <div class="item"><span>Dưa lưới</span><span class="price">25K</span></div>
+          <div class="item"><span>Ổi hồng</span><span class="price">25K</span></div>
+          <div class="item"><span>Mãng cầu</span><span class="price">25K</span></div>
+          <div class="item"><span>Cam mật ong</span><span class="price">25K</span></div>
+        </div>
+        <!-- Trà -->
+        <div class="card"><h3>Trà</h3>
+          <div class="item"><span>Chanh dây</span><span class="price">25K</span></div>
+          <div class="item"><span>Đào</span><span class="price">25K</span></div>
+          <div class="item"><span>Dâu</span><span class="price">25K</span></div>
+          <div class="item"><span>Tắc</span><span class="price">25K</span></div>
+          <div class="item"><span>Việt quất</span><span class="price">25K</span></div>
+          <div class="item"><span>Xoài</span><span class="price">25K</span></div>
+          <div class="item"><span>Dưa lưới</span><span class="price">25K</span></div>
+          <div class="item"><span>Mãng cầu</span><span class="price">25K</span></div>
+          <div class="item"><span>Ổi hồng</span><span class="price">25K</span></div>
+          <div class="item"><span>Cam mật ong</span><span class="price">25K</span></div>
+          <div class="item"><span>Lipton</span><span class="price">25K</span></div>
+        </div>
+        <!-- Đá xay -->
+        <div class="card"><h3>Đá xay</h3>
+          <div class="item"><span>Matcha đá xay</span><span class="price">28K</span></div>
+          <div class="item"><span>Cacao đá xay</span><span class="price">28K</span></div>
+          <div class="item"><span>Coffee đá xay</span><span class="price">28K</span></div>
+          <div class="item"><span>Socola đá xay</span><span class="price">28K</span></div>
+        </div>
+        <!-- Vị khác -->
+        <div class="card"><h3>Vị khác</h3>
+          <div class="item"><span>Sữa tươi trân châu đường đen</span><span class="price">28K</span></div>
+          <div class="item"><span>Cam sữa</span><span class="price">28K</span></div>
+          <div class="item"><span>Chanh sữa</span><span class="price">25K</span></div>
+          <div class="item"><span>Dừa tươi</span><span class="price">25K</span></div>
+          <div class="item"><span>Sữa chua đá</span><span class="price">22K</span></div>
+        </div>
+        <!-- Nước lon -->
+        <div class="card"><h3>Nước lon</h3>
+          <div class="item"><span>Nước suối</span><span class="price">16K</span></div>
+          <div class="item"><span>Coca</span><span class="price">20K</span></div>
+          <div class="item"><span>Pepsi</span><span class="price">20K</span></div>
+          <div class="item"><span>Sting</span><span class="price">20K</span></div>
+          <div class="item"><span>7up</span><span class="price">20K</span></div>
+          <div class="item"><span>Xá xị</span><span class="price">20K</span></div>
+          <div class="item"><span>Sữa đậu nành</span><span class="price">20K</span></div>
+          <div class="item"><span>Redbull thái</span><span class="price">25K</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section about">
+    <div class="container">
+      <h2 class="section-title">Về NaNa Coffee</h2>
+      <p>NaNa Coffee mang đến hương vị tươi mới từ cà phê và nước uống trái cây. Không gian ấm cúng, phù hợp gặp gỡ bạn bè, học tập hoặc làm việc.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Liên hệ & Địa chỉ</h2>
+      <div class="grid grid-sm-2" style="margin-top:18px; align-items:start;">
+        <div class="card">
+          <h3>NaNa Coffee</h3>
+          <div class="info">
+            <div>📍 <strong>Số 1, Đường 57, Phường Tân Tạo, Quận Bình Tân</strong></div>
+            <div>🕒 <strong>Giờ mở cửa:</strong> 19:00 – 22:00</div>
+            <div>☎️ <strong>Điện thoại:</strong> <a href="tel:0934569393">0934 569 393</a></div>
+          </div>
+          <div class="btns">
+            <a class="btn" href="tel:0934569393">📞 Gọi ngay</a>
+            <a class="btn outline" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=NaNa+Coffee+S%C3%B4+1+%C4%90%C6%B0%E1%BB%9Dng+57+Ph%C6%B0%E1%BB%9Dng+T%C3%A2n+T%E1%BA%A1o+Qu%E1%BA%ADn+B%C3%ACnh+T%C3%A2n">🧭 Chỉ đường</a>
+          </div>
+        </div>
+        <div class="card">
+          <!-- Thay bằng iframe Place ID nếu bạn muốn cố định đúng địa điểm -->
+          <div style="position:relative;padding-bottom:56%;height:0;overflow:hidden;border-radius:14px;">
+            <iframe title="Bản đồ NaNa Coffee" loading="lazy" allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed/v1/search?key=AIzaSyD-PLACEHOLDER&q=NaNa+Coffee+S%C3%B4+1+%C4%90%C6%B0%E1%BB%9Dng+57+Ph%C6%B0%E1%BB%9Dng+T%C3%A2n+T%E1%BA%A1o+Qu%E1%BA%ADn+B%C3%ACnh+T%C3%A2n"
+              style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe>
+          </div>
+          <p style="margin:10px 0 0;color:var(--muted);font-size:12px">*Nếu bản đồ không hiển thị do khoá API, link "Chỉ đường" vẫn hoạt động bình thường.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="y"></span> NaNa Coffee. All rights reserved.
+  </footer>
+
+  <script>
+    // năm footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
